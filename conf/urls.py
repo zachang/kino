@@ -15,10 +15,7 @@ Including another URLconf
 """
 from django.urls import path, include
 
-from cinema.views import home
-
 
 urlpatterns = [
-    path('', home),
-    path('movies/', include('cinema.urls', namespace='cinema')),
+    path('', include('cinema.urls', namespace='cinema')),
 ]

@@ -5,13 +5,14 @@ CAST_URL = 'https://ghibliapi.herokuapp.com/people/'
 
 
 def get_movies():
+    """All movies api call"""
     response = requests.get(MOVIE_URL)
     movies = response.json() if response.status_code == 200 else []
-
     return movies
 
 
 def get_movie(movie_id):
+    """Specific movie api call"""
     movie_response = requests.get(f'{MOVIE_URL}{movie_id}')
     if movie_response.status_code == 200:
         people_response = requests.get(CAST_URL)

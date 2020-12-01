@@ -13,25 +13,27 @@ def home(request):
 
 
 @cache_page(settings.CACHE_TTL)
-@require_http_methods(["GET"])  # with DRF this would be @api_view(['GET'])
+@require_http_methods(['GET'])  # with DRF this would be @api_view(['GET'])
 def films(request):
+    """Resource view for all movies"""
     movies_list = get_movies()
     page = request.GET.get('page', 1)
     paginator = Paginator(movies_list, 10)
-    if movies_list:
-        try:
-            movies = paginator.page(page)
-        except PageNotAnInteger:
-            movies = paginator.page(1)
-        except EmptyPage:
-            movies = paginator.page(paginator.num_pages)
 
-        return render(request, 'cinema/movies.html', {'movies': movies})
-    return render(request, 'cinema/movies.html', {'movies': movies_list})
+    try:
+        movies = paginator.page(page)
+    except PageNotAnInteger:
+        movies = paginator.page(1)
+    except EmptyPage:
+        movies = paginator.page(paginator.num_pages)
+
+    context = {'movies': movies}
+    return render(request, 'cinema/movies.html', context)
 
 
 @cache_page(settings.CACHE_TTL)
-@require_http_methods(["GET"])  # with DRF this would be @api_view(['GET'])
+@require_http_methods(['GET'])  # with DRF this would be @api_view(['GET'])
 def film(request, movie_id):
+    """Resource view for a single movie"""
     movie = get_movie(movie_id)
     return render(request, 'cinema/movie.html', {'movie': movie})
