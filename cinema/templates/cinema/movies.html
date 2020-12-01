@@ -1,0 +1,57 @@
+{% extends 'cinema/base.html' %}
+{% load static %}
+
+{% block content %}
+    <table class="table table-responsive.">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Director</th>
+                <th scope="col">Producer</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Rating</th>
+                <th scope="col">more</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if movies %}
+            {% for movie in movies %}
+            <tr>
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.director }}</td>
+                <td>{{ movie.producer}}</td>
+                <td>{{ movie.release_date }}</td>
+                <td>{{ movie.rt_score }}</td>
+                <td><a href="#">View</a></td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr><td colspan="6">Movies not available yet</td></tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    {% if movies.has_other_pages %}
+    <ul class="pagination">
+        {% if movies.has_previous %}
+        <li><a href="?page={{ movies.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+
+        {% for i in movies.paginator.page_range %}
+            {% if movies.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if movies.has_next %}
+            <li><a href="?page={{ movies.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+{% endblock %}
