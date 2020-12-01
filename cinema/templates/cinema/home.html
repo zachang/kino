@@ -1,0 +1,25 @@
+{% block extend_base_css %}
+    <style>
+        body{
+            max-height: 40vh;
+            margin: 0;
+            padding:0;
+            color:navy;"
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div style="display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        flex-direction: column;"
+    >
+        <h1>Welcome to Kino movies</h1>
+        <h3>
+            <a href="{% url 'cinema:films' %}" style="text-decoration:none; color:darkorange">
+                Go to movies
+            </a>
+        </h3>
+    </div>
+{% endblock %}
