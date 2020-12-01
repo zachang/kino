@@ -13,7 +13,11 @@ A simple movie list from Studio Ghibli
 - Run `make start` to start app
 - For Test, Run `make test` or `make test_coverage`
 - Do a `Makefile` file look-up if `make` commands don't work as specified or just run the allowed django commands.
-- Endpoints sample; host server might differ
+- Since we cache our page using `redis` backend, install redis;
+    - for MacOs `brew intall redis`
+    - on your terminal, Run `redis-server`
+    - do check how to install for other operating systems
+- Webpage links sample; host server might differ
     - `http://localhost:8000/`
     - `http://localhost:8000/movies/`
     - `http://localhost:8000/{movie_id}`
