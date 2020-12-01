@@ -1,7 +1,7 @@
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from django.shortcuts import render
 
-from cinema.service import get_movies
+from cinema.service import get_movies, get_movie
 
 
 def films(request):
@@ -18,3 +18,8 @@ def films(request):
 
         return render(request, 'cinema/movies.html', {'movies': movies})
     return render(request, 'cinema/movies.html', {'movies': movies_list})
+
+
+async def film(request, movie_id):
+    movie = await get_movie(movie_id)
+    return render(request, 'cinema/movie.html', {'movie': movie})

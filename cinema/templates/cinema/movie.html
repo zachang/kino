@@ -1,0 +1,26 @@
+{% extends 'cinema/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            Movie
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Title: {{movie.title}}</li>
+            <li class="list-group-item">Director: {{movie.director}}</li>
+            <li class="list-group-item">Producer: {{movie.producer}}</li>
+            <li class="list-group-item">Release Date: {{movie.release_date}}</li>
+            <li class="list-group-item">Ratings: {{movie.rt_score}}</li>
+        </ul>
+
+        {% if movie.casts %}
+        <div class="card-body">
+            <h5 class="card-title">Casts</h5>
+            {% for cast in movie.casts %}
+            <p class="card-text">{{cast}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

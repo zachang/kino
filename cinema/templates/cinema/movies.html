@@ -22,7 +22,7 @@
                 <td>{{ movie.producer}}</td>
                 <td>{{ movie.release_date }}</td>
                 <td>{{ movie.rt_score }}</td>
-                <td><a href="#">View</a></td>
+                <td><a href="{% url 'cinema:film' movie.id %}">View</a></td>
             </tr>
             {% endfor %}
         {% else %}
